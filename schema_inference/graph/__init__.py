@@ -15,9 +15,9 @@ class SchemaNetPredictor(nn.Module):
     """
     Procedure:
         1. use ingredient model to predict sequence of ingredient
-        2. use dark KG to predict
+        2. use SchemaNet to predict
     Prediction:
-        "pred": dark kg prediction, shape: [bs, num_classes];
+        "pred": SchemaNet prediction, shape: [bs, num_classes];
         "origin_pred": origin model prediction, shape: [bs, num_classes];
         "codes": codes predicted by origin model, shape: [bs, H, W];
         "attribution": attribution to codes w.r.t. each class, shape: [bs, num_classes, H, W]

@@ -6,9 +6,6 @@ from .dist_utils import LogArgs, DistLaunchArgs
 from .model import load_pretrain_model
 from .customs_param_group import customs_param_group
 from .ingredient_model_wrapper import IngredientModelWrapper
-from .BoW_model_wrapper import BoWPredictor
-from .BagNet_model_wrapper import BagNetPredictor
-from .backbone_fc_wrapper import BackboneFCPredictor
 
 
 def move_data_to_device(

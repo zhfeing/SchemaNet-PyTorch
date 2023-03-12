@@ -1,9 +1,9 @@
 """
-Worker for evaluating model or codebook model.
+Worker for evaluating model or discretized model.
 
 Warning:
-    For evaluating a codebook model, it must be converted to a jit model or the result will be
-    the original model bypassing the codebook, which is wrong.
+    For evaluating a discretized model, it must be converted to a jit model or the result will be
+    the original model bypassing the discretized, which is wrong.
 """
 
 import os
