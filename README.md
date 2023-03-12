@@ -1,4 +1,4 @@
-# dark-knowledge-graph
+# SchemaNet-Pytorch
 
 *Official implementation for paper [Schema Inference for Interpretable Image Classification](https://openreview.net/forum?id=VGI9dSmTgPF)*
 
