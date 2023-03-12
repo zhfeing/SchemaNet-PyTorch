@@ -95,35 +95,35 @@ def main(args):
     discretization: torch.jit.ScriptModule = torch.jit.load(schema_net_cfg["discretization_jit"], map_location=device)
     print("Loaded jit models.")
     wrapper = utils.IngredientModelWrapper(backbone, discretization)
-    # create relation graph
+    # create schema net
     print("Creating graphs...")
-    relation_graph = graph.SchemaNet(
+    schema_net = graph.SchemaNet(
         num_vertices=wrapper.num_ingredients,
         num_classes=n_classes,
         **schema_net_cfg["ir_atlas"]
     ).to(device)
 
-    class_max_vertices = relation_graph.class_max_vertices
+    class_max_vertices = schema_net.class_max_vertices
 
     wrapper.eval().to(device)
     print("Running vertex initialization...")
     init_weights = init_class_vertices(
         dataloader,
         wrapper,
-        graph=relation_graph,
+        graph=schema_net,
         device=device
     )
     init_weights, valid_vertices = init_weights.topk(class_max_vertices, dim=1)
     print("Running graph initialization...")
-    relation_graph.register_class_vertices(valid_vertices)
-    relation_graph.vertex_weights.copy_(init_weights)
+    schema_net.register_class_vertices(valid_vertices)
+    schema_net.vertex_weights.copy_(init_weights)
     init_graph(
         dataloader,
         wrapper,
-        graph=relation_graph,
+        graph=schema_net,
         device=device
     )
-    state_dict = relation_graph.state_dict()
+    state_dict = schema_net.state_dict()
     torch.save(state_dict, args.save_fp)
 
 
