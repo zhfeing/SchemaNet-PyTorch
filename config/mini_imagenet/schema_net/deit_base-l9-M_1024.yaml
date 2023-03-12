@@ -1,0 +1,59 @@
+dataset: config/datasets/mini_imagenet.yaml
+
+training:
+  optimizer:
+    name: AdamW
+    lr: 1.0e-3
+    weight_decay: 0.05
+  param_groups:
+    - pattern: schema_net
+      cfg:
+        weight_decay: 5.0e-4
+    - pattern: matcher
+  drop_remain: True
+
+  lr_schedule:
+    name: cosine_annealing
+    T_max: 50
+    eta_min: 1.0e-5
+  train_epochs: 50
+  print_interval: 20
+  val_interval: 500
+  batch_size: 64
+  num_workers: 8
+
+schema_net:
+  backbone_jit: run/mini_imagenet/ingredient/deit_base-l9-M_1024-all/jit/backbone-jit.pth
+  discretization_jit: run/mini_imagenet/ingredient/deit_base-l9-M_1024-all/jit/discretization-jit.pth
+  matcher:
+    similarity: inner_product
+  gnn:
+    embed_dim: 256
+    num_layers: 2
+    identity_proj: False
+    activation: relu
+  ir_atlas:
+    class_max_vertices: Null
+    dist_pow: 2
+    feat_h: 14
+    feat_w: 14
+    constant_vertex_attr: Null
+    constant_edge_attr: Null
+    clamp_vertex_attn: -1.0
+    clamp_edge_attn: -1.0
+    remove_self_loop: False
+    prune_node_threshold: 0.001
+    apply_normalize: True
+    clamp_weights: True
+  initial_state_fp: run/mini_imagenet/schema_net/init_IR_atlas-deit_base-l9-M_1024.pth
+
+validation:
+  batch_size: 64
+  num_workers: 8
+
+loss:
+  name: schema_inference_loss
+  weight_dict:
+    cls: 1.0
+    re_entropy_vertex: 0.5
+    re_entropy_edge: 0.75

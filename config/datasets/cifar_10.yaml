@@ -1,0 +1,7 @@
+name: cifar_10
+root: ~/datasets/cifar
+train:
+  split: train
+val:
+  split: test
+resize: 224

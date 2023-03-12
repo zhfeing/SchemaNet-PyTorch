@@ -1,0 +1,11 @@
+dataset: config/datasets/imagenet.yaml
+
+discretization:
+  vocabulary:
+    size: 8000
+    dim: 384
+    detach_input_seq: True
+    uniform_range: [0, 1]
+  encoder_layer: module.transformer.layers.9
+
+model: config/models/deit_small_patch16_224.yaml

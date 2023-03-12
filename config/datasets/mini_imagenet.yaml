@@ -1,0 +1,7 @@
+name: mini_imagenet
+root: ~/datasets/mini-imagenet
+train:
+  split: train
+val:
+  split: val
+resize: 224

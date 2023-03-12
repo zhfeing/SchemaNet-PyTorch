@@ -1,0 +1,8 @@
+name: imagenet
+root: ~/datasets/ILSVRC2012
+train:
+  split: train
+val:
+  split: val
+resize: 224
+use_real_class_name: True

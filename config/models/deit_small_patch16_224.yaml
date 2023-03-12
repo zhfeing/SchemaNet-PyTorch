@@ -1,0 +1,27 @@
+model:
+  name: vit
+  transformer:
+    embed_dim: 384
+    num_encoder_layers: 12
+    num_heads: 6
+    dim_feedforward: 1536
+    dropout: 0.1
+    activation: gelu
+    final_norm: True
+    norm_eps: 1.0e-6
+  patch_embed:
+    name: vit_like
+    img_size: 224
+    patch_size: 16
+    image_channels: 3
+  pos_encoding:
+    name: learnable
+    dropout: Null
+
+resume:
+  imagenet: weights/deit_small_patch16_224.pth
+  mini_imagenet: run/mini_imagenet/vanilla/deit_small/ckpt/best.pth
+  cifar_100: run/cifar_100/vanilla/deit_small/ckpt/best.pth
+  cifar_10: run/cifar_10/vanilla/deit_small/ckpt/best.pth
+  caltech_101: run/caltech_101/vanilla/deit_small/ckpt/best.pth
+

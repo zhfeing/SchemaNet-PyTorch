@@ -1,0 +1,48 @@
+dataset: config/datasets/cifar_10.yaml
+
+training:
+  optimizer:
+    name: AdamW
+    lr: 1.0e-4
+    weight_decay: 0.05
+  lr_schedule:
+    name: cosine_annealing
+    T_max: 50
+    warmup_iters: 10
+  train_epochs: 50
+  print_interval: 20
+  val_interval: 500
+  batch_size: 64
+  num_workers: 8
+  clip_max_norm: 0.1
+
+validation:
+  batch_size: 1
+  num_workers: 8
+
+model:
+  name: vit
+  transformer:
+    embed_dim: 192
+    num_encoder_layers: 12
+    num_heads: 3
+    dim_feedforward: 768
+    dropout: 0.1
+    activation: gelu
+    final_norm: True
+    norm_eps: 1.0e-6
+  patch_embed:
+    name: vit_like
+    img_size: 224
+    patch_size: 16
+    image_channels: 3
+  pos_encoding:
+    name: learnable
+    dropout: Null
+  pre_train: weights/deit_tiny_patch16_224.pth
+  lax_names: [cls_head.weight, cls_head.bias]
+
+loss:
+  name: ce_loss
+  weight_dict:
+    cls: 1.0

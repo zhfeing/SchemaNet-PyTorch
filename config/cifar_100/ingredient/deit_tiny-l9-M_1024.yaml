@@ -1,0 +1,11 @@
+dataset: config/datasets/cifar_100.yaml
+
+discretization:
+  vocabulary:
+    size: 1024
+    dim: 192
+    detach_input_seq: True
+    uniform_range: [0, 1]
+  encoder_layer: module.transformer.layers.9
+
+model: config/models/deit_tiny_patch16_224.yaml

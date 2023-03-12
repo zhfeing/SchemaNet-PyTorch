@@ -1,0 +1,7 @@
+name: caltech_101
+root: ~/datasets/caltech-101
+train:
+  split: train
+val:
+  split: test
+resize: 224
