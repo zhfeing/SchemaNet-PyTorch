@@ -36,7 +36,6 @@ graphviz
 h5py
 matplotlib
 networkx
-pandas
 scikit-learn
 sklearn
 seaborn
