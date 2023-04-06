@@ -1,7 +1,6 @@
 #!/bin/bash
 
 
-CV_LIB_PATH=/c22940/zhf/zhfeing_cygpu1/project/cv-lib-PyTorch
 export PYTHONPATH=$CV_LIB_PATH:./
 
 export CUDA_VISIBLE_DEVICES=0

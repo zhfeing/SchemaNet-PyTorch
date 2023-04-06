@@ -18,7 +18,13 @@ Authors: Haofei Zhang, Mengqi Xue, Xiaokang Liu, Kaixuan Chen, Jie Song, Mingli 
 
 ### 2. Prepare cv-lib-PyTorch
 
-Our code requires [cv-lib-PyTorch](https://github.com/zhfeing/cv-lib-PyTorch/tree/bootstrapping_vits). You should download this repo and checkout to tag `schema_inference`.
+Our code requires [cv-lib-PyTorch](https://github.com/zhfeing/cv-lib-PyTorch/tree/bootstrapping_vits). Please download this repo and checkout to tag `schema_inference`.
+Besides, you should set environment variable `CV_LIB_PATH` to the directory of this repo, for example:
+
+```bash
+export CV_LIB_PATH=$HOME/path/to/cv-lib-PyTorch
+```
+
 > `cv-lib-PyTorch` is an open source repo currently maintained by me.
 
 ### 3. Requirements
